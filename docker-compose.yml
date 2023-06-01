@@ -1,0 +1,38 @@
+services:
+
+  cottoncandy_backend:
+    container_name: cottoncandy-backend-app
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/cottoncandy-laravel:/var/www/html
+    ports:
+      - 9000:80
+  
+  mysql_db:
+    image: mysql:8.0.33
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cottoncandy
+    ports:
+    - 3310:3306
+  
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
+  
+  cottoncandy_frontend:
+    container_name: cottoncandy-frontend-app
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    entrypoint: /bin/bash
+    ports:
+      - 8080:8080
+    volumes:
+      - ./frontend/:/var/www/html/app
+    tty: true
