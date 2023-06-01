@@ -10,8 +10,9 @@ For frontend running go to frontend bash directory:
 1. docker exec -it cottoncandy-frontend-app bash
 
 Then, run command:
-2. npm run dev
+1. npm run dev
 
 -----------------------------------------------------------
-#Backend will running this address: http://localhost:9000
-#Frontend will running this address: http://localhost:8080
+# Backend will running this address: http://localhost:9000
+
+# Frontend will running this address: http://localhost:8080
