@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios';
 import { ref } from 'vue'
 
 const contactForm = ref({
@@ -8,10 +9,21 @@ const contactForm = ref({
   message: ''
 })
 
-const handleForm = () => {
+const handleForm = async () => {
   // Send form data to server or perform other actions
-  console.log(contactForm.value)
-}
+  try {
+    axios
+      .post("http://localhost:9000/sendmail", contactForm.value)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 </script>
 
 <template>
